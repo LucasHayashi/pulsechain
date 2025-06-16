@@ -41,11 +41,11 @@ function PulseCard({pulse, isLikedByCurrentUser, isConnected}: { pulse: Pulse; i
     const {writeContract: deletePulse, data: deleteHash, isPending: isDeletePending} = useWriteEnsRegistryDeletePulse();
 
     // Wait for transaction receipts
-    const {isLoading: isLikeConfirming, isSuccess: isLikeConfirmed} = useWaitForTransactionReceipt({
+    const {isLoading: isLikeConfirming} = useWaitForTransactionReceipt({
         hash: likeHash,
     });
 
-    const {isLoading: isUnlikeConfirming, isSuccess: isUnlikeConfirmed} = useWaitForTransactionReceipt({
+    const {isLoading: isUnlikeConfirming} = useWaitForTransactionReceipt({
         hash: unlikeHash,
     });
 

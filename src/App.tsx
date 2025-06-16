@@ -44,10 +44,10 @@ function App() {
                         alignItems: 'center',
                         gap: '0.5rem',
                     }}>
-                        PulseChain <img src={imgLogo} alt={'Pulsechain Logo'} height={25} />
+                        PulseChain <img src={imgLogo} alt={'Pulsechain Logo'} height={25}/>
                     </Typography>
-                    <appkit-button />
-                    <ThemeToggleButton />
+                    <appkit-button/>
+                    <ThemeToggleButton/>
                 </Toolbar>
             </AppBar>
 
@@ -92,7 +92,7 @@ function App() {
                                     alignItems: 'center',
                                     gap: '0.5rem',
                                 }}>
-                                    PulseChain <img src={imgLogo} alt={'Pulsechain Logo'} height={25} />
+                                    PulseChain <img src={imgLogo} alt={'Pulsechain Logo'} height={25}/>
                                 </Typography>
                                 <Typography
                                     variant="body2"
@@ -172,24 +172,26 @@ function App() {
                                     >
                                         <ContentCopy fontSize="small"/>
                                     </IconButton>
-                                    <Link
-                                        href={contractLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        sx={{textDecoration: 'none'}}
-                                    >
-                                        <Chip
-                                            label="View on Explorer"
-                                            size="small"
-                                            clickable
-                                            sx={{
-                                                '&:hover': {
-                                                    transform: 'scale(1.05)',
-                                                    transition: 'transform 0.2s ease-in-out'
-                                                }
-                                            }}
-                                        />
-                                    </Link>
+                                    {contractLink && (
+                                        <Link
+                                            href={contractLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            sx={{textDecoration: 'none'}}
+                                        >
+                                            <Chip
+                                                label="View on Explorer"
+                                                size="small"
+                                                clickable
+                                                sx={{
+                                                    '&:hover': {
+                                                        transform: 'scale(1.05)',
+                                                        transition: 'transform 0.2s ease-in-out'
+                                                    }
+                                                }}
+                                            />
+                                        </Link>
+                                    )}
                                 </Stack>
                             </Stack>
                         </Box>

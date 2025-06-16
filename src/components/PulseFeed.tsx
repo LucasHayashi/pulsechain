@@ -14,7 +14,6 @@ import {
 } from "../generated.ts";
 import {Alert, Box, CircularProgress, Pagination, Stack, Typography} from "@mui/material";
 import PulseCard from "./PulseCard.tsx";
-import {wagmiAdapter} from "../config";
 
 function PulseFeed() {
     const {address, isConnected} = useAppKitAccount();
@@ -40,7 +39,7 @@ function PulseFeed() {
     const {data: likedStatuses} = useReadContracts({
         contracts: pulses?.map(p => ({
             abi: ensRegistryAbi,
-            address: ensRegistryAddress[chainId],
+            address: ensRegistryAddress[chainId as keyof typeof ensRegistryAddress],
             functionName: 'userHasLiked',
             args: [p.id, address!],
         })),
@@ -86,25 +85,21 @@ function PulseFeed() {
     useWatchEnsRegistryPulseCreatedEvent({
         onLogs: handlePulseCreated,
         poll: false,
-        batch: true
     });
 
     useWatchEnsRegistryPulseLikedEvent({
         onLogs: handlePulseLiked,
         poll: false,
-        batch: true
     });
 
     useWatchEnsRegistryPulseUnlikedEvent({
         onLogs: handlePulseUnliked,
         poll: false,
-        batch: true
     });
 
     useWatchEnsRegistryPulseDeletedEvent({
         onLogs: handlePulseDeleted,
         poll: false,
-        batch: true
     });
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
