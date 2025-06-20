@@ -28,8 +28,8 @@ jobs:
       - name: Build do projeto modo (Hostinger)
         run: npm run build:hostinger
         env:
-          VITE_WC_PROJECT_ID: {{ secrets.VITE_WC_PROJECT_ID }}
-          VITE_ETHERSCAN_API_KEY: {{ secrets.VITE_ETHERSCAN_API_KEY }}
+          VITE_WC_PROJECT_ID: ${{ secrets.VITE_WC_PROJECT_ID }}
+          VITE_ETHERSCAN_API_KEY: ${{ secrets.VITE_ETHERSCAN_API_KEY }}
 
       - name: Garantir que a pasta de build existe
         run: mkdir -p "${{ github.workspace }}/dist"
