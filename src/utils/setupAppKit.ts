@@ -7,7 +7,10 @@ const setupAppKit = (themeMode: 'light' | 'dark') =>
         projectId,
         networks,
         metadata,
-        themeMode
+        themeMode,
+        features: {
+            socials: false
+        }
     });
 
 export default setupAppKit;

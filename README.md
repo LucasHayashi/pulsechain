@@ -37,10 +37,28 @@ Este projeto utiliza o contrato inteligente [`0xF1E9cFF187D12d8a33862e0108dd216C
 
 > Nenhuma instalação local é necessária. A aplicação é acessada diretamente no navegador com suporte à carteira MetaMask.
 
-### 1. Instale a extensão MetaMask
+Claro! Aqui está uma sugestão atualizada para o seu **README**, cobrindo as **duas formas de autenticação**: com **carteira MetaMask** e com **e-mail**.
 
-* [Extensão para navegador](https://metamask.io/download)
-* Crie uma nova carteira ou conecte uma já existente.
+---
+
+### 🔐 Passo 1 – Criar e se autenticar com uma carteira
+
+Você pode se autenticar de duas formas:
+**1. Via carteira MetaMask** (extensão)
+**2. Via e-mail + código de confirmação**
+
+#### 🔸 Opção 1 – MetaMask (extensão para navegador)
+
+1. Instale a extensão [MetaMask](https://metamask.io/download) no seu navegador.
+2. Crie uma nova carteira ou conecte uma já existente.
+3. Após conectar a carteira, você poderá autenticar-se diretamente com ela no app.
+
+#### 🔸 Opção 2 – E-mail + código de confirmação
+
+1. Na janela aberta depois de clicar em **Connect Wallet**, clique em **"Haven't got a wallet? Get started"**.
+2. Informe seu **e-mail**.
+3. Digite o **código de confirmação** que será enviado para sua caixa de entrada, spam ou lixo eletrônico.
+4. Pronto! Agora seu login será feito com **e-mail + código de confirmação**.
 
 ### 2. Obtenha ETH de teste (Sepolia)
 
