@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      VITE_WC_PROJECT_ID: {{ secrets.VITE_WC_PROJECT_ID }}
+      VITE_ETHERSCAN_API_KEY: {{ secrets.VITE_ETHERSCAN_API_KEY }}
 
     steps:
       - name: Checkout código
@@ -30,15 +33,6 @@ jobs:
 
       - name: Garantir que a pasta de build existe
         run: mkdir -p "${{ github.workspace }}/dist"
-
-      - name: Copiar .htaccess para pasta de build (se existir)
-        run: |
-          if [ -f "${{ github.workspace }}/.htaccess" ]; then
-            cp "${{ github.workspace }}/.htaccess" "${{ github.workspace }}/dist/"
-            echo ".htaccess copiado com sucesso"
-          else
-            echo ".htaccess não encontrado, prosseguindo sem ele"
-          fi
 
       - name: Deploy via FTP para Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
