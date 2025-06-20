@@ -1,0 +1,51 @@
+name: Deploy Pulsechain to Hostinger
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Limpar dependências antigas
+        run: rm -rf node_modules
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Build do projeto modo (Hostinger)
+        run: npm run build:hostinger
+
+      - name: Garantir que a pasta de build existe
+        run: mkdir -p "${{ github.workspace }}/dist"
+
+      - name: Copiar .htaccess para pasta de build (se existir)
+        run: |
+          if [ -f "${{ github.workspace }}/.htaccess" ]; then
+            cp "${{ github.workspace }}/.htaccess" "${{ github.workspace }}/dist/"
+            echo ".htaccess copiado com sucesso"
+          else
+            echo ".htaccess não encontrado, prosseguindo sem ele"
+          fi
+
+      - name: Deploy via FTP para Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: "${{ github.workspace }}/dist/"
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          dangerous-clean-slate: true
